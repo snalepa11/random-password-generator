@@ -13,34 +13,28 @@ function writePassword() {
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
-function generatePassword(){
+function generatePassword() {
   var passwordLength = prompt("Enter the desired length of your password. Note: It must be more than 8 characters.")
-  console.log("User entered this", passwordLength)
-  
-  let passwordLengthCriteria = false
-  while(!passwordLengthCriteria){
-    if (passwordLength == ""){
-      passwordLength = prompt("You must enter a value.")
-    }
 
-    if (Number.parseInt(passwordLength) < 8 || Number.parseInt(passwordLength) > 128){
-      passwordLength = prompt("Password must be greater than 8 or less than 128 characters.")
-      passwordLengthCriteria = true;
-    } 
-  }
-  
-  
-  
-  //Make it so people cannot progress until entering a valid number
+  passwordLength = checkPasswordIsNotEmptyString(passwordLength);
+  passwordLength = checkPasswordLengthIsCorrect(passwordLength)
 
-  var confirmCharacters = confirm("Select whether you would like to use uppercase letters, lowercase letters, numbers or special charatcers.")
+
+  var confirmUpperCase = confirm("Do you want to include uppercase letters in your passwords?")
+  var confirmLowerCase = confirm("Do  you want to include lower case letters in your password?")
+  var confirmNumbers = confirm("Do you want to include numbers in your password?")
+  var confirmSC = confirm("Do you wnat to include speacial characters in your password?")
   var listOfCharacters = ""
   //Create checkboxes formatting Capitol letters, lowercase letters, numbers, and special characters
-  if (confirmCharacters) {
-    listOfCharacters= 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*';
-  } else {
-    listOfCharacters= 'abcdefghijklmnopqrstuvwxyz0123456789'
-  }
+  if (confirmUpperCase) {
+    listOfCharacters= 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  } else if (confirmLowerCase) {
+    listOfCharacters= 'abcdefghijklmnopqrstuvwxyz'
+  } else if (confirmNumbers) {
+    listOfCharacters="1234567890"
+  } else if (confirmSC) {
+    listOfCharacters= "!@#$%^&*()?/><"
+  } 
   
 
   var finalPassword = ""
@@ -49,4 +43,20 @@ function generatePassword(){
   }
     
   return finalPassword
+}
+
+function checkPasswordIsNotEmptyString(passwordLength) {
+  while(passwordLength == "") {
+    passwordLength = prompt("You must enter a value.")
+  }
+
+  return passwordLength;
+}
+
+function checkPasswordLengthIsCorrect(passwordLength) {
+  while(Number.parseInt(passwordLength) < 8 || Number.parseInt(passwordLength) > 128 || passwordLength == ""){
+    passwordLength = prompt("Password must be greater than 8 or less than 128 characters.")
+  } 
+
+  return passwordLength
 }
