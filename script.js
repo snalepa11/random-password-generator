@@ -24,16 +24,23 @@ function generatePassword() {
   var confirmLowerCase = confirm("Do  you want to include lower case letters in your password?")
   var confirmNumbers = confirm("Do you want to include numbers in your password?")
   var confirmSC = confirm("Do you wnat to include speacial characters in your password?")
+  
   var listOfCharacters = ""
   //Create checkboxes formatting Capitol letters, lowercase letters, numbers, and special characters
   if (confirmUpperCase) {
-    listOfCharacters= 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-  } else if (confirmLowerCase) {
-    listOfCharacters= 'abcdefghijklmnopqrstuvwxyz'
-  } else if (confirmNumbers) {
-    listOfCharacters="1234567890"
-  } else if (confirmSC) {
-    listOfCharacters= "!@#$%^&*()?/><"
+    listOfCharacters= listOfCharacters + 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  } 
+  
+  if (confirmLowerCase) {
+    listOfCharacters= listOfCharacters + 'abcdefghijklmnopqrstuvwxyz'
+  } 
+  
+  if (confirmNumbers) {
+    listOfCharacters = listOfCharacters + "1234567890"
+  } 
+  
+  if (confirmSC) {
+    listOfCharacters = listOfCharacters + "!@#$%^&*()?/><"
   } 
   
 
