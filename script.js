@@ -42,11 +42,16 @@ function generatePassword() {
   if (confirmSC) {
     listOfCharacters = listOfCharacters + "!@#$%^&*()?/><"
   } 
-  
+
+  if(!confirmLowerCase && !confirmNumbers && !confirmSC && !confirmUpperCase){
+    alert("You need to choose at least one type of character in order to generate a password")
+    window.location.reload()
+  }
+
 
   var finalPassword = ""
   for(let i=0; i < passwordLength; i++) {
-    finalPassword += listOfCharacters.charAt(Math.floor(Math.random() * listOfCharacters.length));
+    finalPassword = finalPassword + listOfCharacters.charAt(Math.floor(Math.random() * listOfCharacters.length));
   }
     
   return finalPassword
